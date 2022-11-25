@@ -1,0 +1,447 @@
+openapi: 3.0.1
+info:
+  title: 微信第三方平台授权相关接口
+  version: 1.0.0
+servers:
+- url: https://api.weixin.qq.com/cgi-bin
+paths:
+
+  /component/api_get_authorizer_info:
+    post:
+      summary: 获取授权方的帐号基本信息
+      tags:
+      - auth
+      parameters:
+      - in: query
+        name: component_access_token
+        required: true
+        description: 第三方平台component_access_token，不是authorizer_access_token
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetAuthorizerInfoRequest'
+        required: true
+      responses:
+        "200":
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAuthorizerInfoResponse'
+
+
+  /component/api_authorizer_token:
+    post:
+      summary: 获取/刷新接口调用令牌
+      tags:
+      - auth
+      parameters:
+      - in: query
+        name: component_access_token
+        required: true
+        description: 第三方平台component_access_token，不是authorizer_access_token
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorizerTokenRequest'
+        required: true
+      responses:
+        "200":
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizerTokenResponse'
+
+
+  /component/api_query_auth:
+    post:
+      summary: 使用授权码获取授权信息
+      tags:
+      - auth
+      parameters:
+      - in: query
+        name: component_access_token
+        required: true
+        description: 第三方平台component_access_token，不是authorizer_access_token
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryAuthRequest'
+        required: true
+      responses:
+        "200":
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryAuthResponse'
+
+
+  /component/api_create_preauthcode:
+    post:
+      summary: 预授权码
+      tags:
+      - auth
+      parameters:
+      - in: query
+        name: component_access_token
+        required: true
+        description: 第三方平台component_access_token，不是authorizer_access_token
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePreauthcodeRequest'
+        required: true
+      responses:
+        "200":
+          description: 预授权码（pre_auth_code）是第三方平台方实现授权托管的必备信息，每个预授权码有效期为 1800秒。需要先获取令牌才能调用。使用过程中如遇到问题，可在开放平台服务商专区发帖交流。
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatePreauthcodeResponse'
+
+
+  /component/api_component_token:
+    post:
+      summary: 令牌
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComponentTokenRequest'
+        required: true
+      responses:
+        "200":
+          description: 令牌（component_access_token）是第三方平台接口的调用凭据。令牌的获取是有限制的，每个令牌的有效期为 2 小时，请自行做好令牌的管理，在令牌快过期时（比如1小时50分），重新调用接口获取。
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComponentTokenResponse'
+
+
+  /component/api_start_push_ticket:
+    post:
+      summary: 启动ticket推送服务
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartPushTicketRequest'
+        required: true
+      responses:
+        "200":
+          description: 该 API 用于启动ticket推送服务。使用过程中如遇到问题，可在开放平台服务商专区发帖交流。
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartPushTicketResponse'
+
+components:
+  schemas:
+    GetAuthorizerInfoRequest:
+      required:
+        - component_appid
+        - authorizer_appid 
+      properties:
+        component_appid:
+          type: string
+          description: 平台型第三方平台的appid
+        authorizer_appid:
+          type: string
+          description: 授权方 appid 
+    GetAuthorizerInfoResponse:
+      properties:
+        errcode:
+          type: integer
+          description: 返回码
+        errmsg:
+          type: string
+          description: 对返回码的文本描述内容
+        authorizer_info:
+          type: object
+          properties:
+            nick_name:
+              type: string
+              description: 昵称
+            head_img:
+              type: string
+              description: 头像
+            service_type_info:
+              type: object
+              description: 公众号类型
+              properties:
+                id:
+                  type: integer
+            verify_type_info:
+              type: object
+              description: 公众号认证类型
+              properties:
+                id:
+                  type: integer
+            user_name:
+              type: string
+              description: 原始 ID
+            principal_name:
+              type: string
+              description: 主体名称
+            alias:
+              type: string
+              description: 公众号所设置的微信号，可能为空
+            business_info:
+              type: object
+              description: 用以了解功能的开通状况（0代表未开通，1代表已开通），详见business_info 说明
+              properties:
+                open_store:
+                  type: integer
+                  description: 是否开通微信门店功能
+                open_scan:
+                  type: integer
+                  description: 是否开通微信扫商品功能
+                open_pay:
+                  type: integer
+                  description: 是否开通微信支付功能
+                open_card:
+                  type: integer
+                  description: 是否开通微信卡券功能
+                open_shake:
+                  type: integer
+                  description: 是否开通微信摇一摇功能
+            qrcode_url:
+              type: string
+              description: 二维码图片的 URL，开发者最好自行也进行保存
+            signature:
+              type: string
+              description: 帐号介绍
+            MiniProgramInfo:
+              type: object
+              description: 小程序配置，根据这个字段判断是否为小程序类型授权
+              properties:
+                visit_status:
+                  type: integer
+                network:
+                  type: object
+                  properties:
+                    RequestDomain:
+                      type: array
+                      items:
+                        type: string
+                    WsRequestDomain:
+                      type: array
+                      items:
+                        type: string
+                    UploadDomain:
+                      type: array
+                      items:
+                        type: string
+                    DownloadDomain:
+                      type: array
+                      items:
+                        type: string
+                    BizDomain:
+                      type: array
+                      items:
+                        type: string
+                    UDPDomain:
+                      type: array
+                      items:
+                        type: string
+                categories:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        description: 帐号介绍
+                      second:
+                        type: string
+                        description: 帐号介绍
+                                
+        authorization_info:
+          type: object
+          properties:
+            authorization_appid:
+              type: string
+              description: 授权方 appid
+            func_info:
+              description: 授权给开发者的权限集列表
+              type: array
+              items:
+                type: object
+                properties:
+                  funcscope_category:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                  
+    AuthorizerTokenRequest:
+      required:
+        - component_appid
+        - authorizer_appid
+        - authorizer_refresh_token
+      properties:
+        component_appid:
+          type: string
+          description: 平台型第三方平台的appid
+        authorizer_appid:
+          type: string
+          description: 授权方 appid
+        authorizer_refresh_token:
+          type: string
+          description: 刷新令牌，获取授权信息时得到 
+    AuthorizerTokenResponse:
+      properties:
+        errcode:
+          type: integer
+          description: 返回码
+        errmsg:
+          type: string
+          description: 对返回码的文本描述内容
+        expires_in:
+          type: integer
+          description: 有效期，单位：秒
+        authorizer_access_token:
+          type: string
+          description: 授权方令牌
+        authorizer_refresh_token:
+          type: string
+          description: 刷新令牌
+
+    QueryAuthRequest:
+      required:
+        - component_appid
+        - authorization_code
+      properties:
+        component_appid:
+          type: string
+          description: 平台型第三方平台的appid
+        authorization_code:
+          type: string
+          description: 授权码, 会在授权成功时返回给第三方平台，详见第三方平台授权流程说明
+    QueryAuthResponse:
+      properties:
+        errcode:
+          type: integer
+          description: 返回码
+        errmsg:
+          type: string
+          description: 对返回码的文本描述内容
+        authorization_info:
+          type: object
+          properties:
+            authorizer_appid:
+              type: string
+              description: 授权方 appid
+            authorizer_access_token:
+              type: string
+              description: 接口调用令牌（在授权的公众号/小程序具备 API 权限时，才有此返回值）
+            expires_in:
+              type: integer
+              description: authorizer_access_token 的有效期（在授权的公众号/小程序具备API权限时，才有此返回值），单位：秒
+            authorizer_refresh_token:
+              type: string
+              description: 刷新令牌（在授权的公众号具备API权限时，才有此返回值），刷新令牌主要用于第三方平台获取和刷新已授权用户的 authorizer_access_token。一旦丢失，只能让用户重新授权，才能再次拿到新的刷新令牌。用户重新授权后，之前的刷新令牌会失效
+            func_info:
+              description: 授权给开发者的权限集列表
+              type: array
+              items:
+                type: object
+                properties:
+                  funcscope_category:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                
+
+    CreatePreauthcodeRequest:
+      required:
+        - component_appid
+      properties:
+        component_appid:
+          type: string
+          description: 平台型第三方平台的appid
+    CreatePreauthcodeResponse:
+      properties:
+        errcode:
+          type: integer
+          description: 返回码
+        errmsg:
+          type: string
+          description: 对返回码的文本描述内容
+        expires_in:
+          type: integer
+          description: 有效期，单位：秒
+        pre_auth_code:
+          type: string
+          description: 预授权码
+
+
+    ComponentTokenRequest:
+      required:
+        - component_appid
+        - component_appsecret
+        - component_verify_ticket
+      properties:
+        component_appid:
+          type: string
+          description: 平台型第三方平台的appid
+        component_appsecret:
+          type: string
+          description: 第三方平台 appsecret
+        component_verify_ticket:
+          type: string
+          description: 微信后台推送的 ticket 
+    ComponentTokenResponse:
+      properties:
+        errcode:
+          type: integer
+          description: 返回码
+        errmsg:
+          type: string
+          description: 对返回码的文本描述内容
+        expires_in:
+          type: integer
+          description: 有效期，单位：秒
+        component_access_token:
+          type: string
+          description: 第三方平台 access_token
+
+
+    StartPushTicketRequest:
+      required:
+        - component_appid
+        - component_secret
+      properties:
+        component_appid:
+          type: string
+          description: 平台型第三方平台的appid
+        component_secret:
+          type: string
+          description: 平台型第三方平台的APPSECRET
+    StartPushTicketResponse:
+      properties:
+        errcode:
+          type: integer
+          description: 返回码
+        errmsg:
+          type: string
+          description: 对返回码的文本描述内容

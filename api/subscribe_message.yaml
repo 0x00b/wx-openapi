@@ -1,0 +1,64 @@
+openapi: 3.0.1
+info:
+  title: 微信公众号订阅消息相关接口
+  version: 1.0.0
+servers:
+- url: https://api.weixin.qq.com/cgi-bin
+paths:
+
+  /message/subscribe/send:
+    post:
+      summary: 发送订阅消息
+      tags:
+      - subscribemessage
+      parameters:
+      - in: query
+        name: access_token
+        required: true
+        description: access_token
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscribeMessageSendRequest'
+        required: true
+      responses:
+        "200":
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscribeMessageSendResponse'
+ 
+components:
+  schemas:
+    SubscribeMessageSendRequest:
+      properties:
+        touser:
+          type: string
+          description: 是 接收者（用户）的 openid
+        template_id:
+          type: string
+          description: 是 所需下发的订阅模板id
+        page:
+          type: string
+          description: 否 点击模板卡片后的跳转页面，仅限本小程序内的页面。支持带参数,（示例index?foo=bar）。该字段不填则模板无跳转。
+        data:
+          type: object
+          description: '是 模板内容，格式形如 { "key1": { "value": any }, "key2": { "value": any } }'
+        miniprogram_state:
+          type: string
+          description: 否 跳转小程序类型：developer为开发版；trial为体验版；formal为正式版；默认为正式版
+        lang:
+          type: string
+          description: 否 进入小程序查看”的语言类型，支持zh_CN(简体中文)、en_US(英文)、zh_HK(繁体中文)、zh_TW(繁体中文)，默认为zh_CN
+    SubscribeMessageSendResponse:
+      properties:
+        errcode:
+          type: integer
+          description: 返回码
+        errmsg:
+          type: string
+          description: 对返回码的文本描述内容

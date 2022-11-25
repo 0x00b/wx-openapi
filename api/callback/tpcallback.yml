@@ -1,0 +1,104 @@
+openapi: 3.0.1
+info:
+  title: 微信第三方平台事件回调
+  version: 1.0.0
+servers:
+- url: https://api.weixin.qq.com
+paths:
+
+  /wxtp/authevent:
+    post:
+      summary: 微信第三方平台授权事件回调
+      tags:
+      - auth
+      parameters:
+      - in: query
+        name: msg_signature
+        required: true
+        description: msg_signature
+        schema:
+          type: string
+      - in: query
+        name: timestamp
+        required: true
+        description: timestamp
+        schema:
+          type: string
+      - in: query
+        name: nonce
+        required: true
+        description: nonce
+        schema:
+          type: string
+      requestBody:
+        description: ""
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: string
+                  format: binary
+                  description: data
+      responses:
+        '200':
+          description: 返回处理结果，一般为 success
+          content:
+            application/text:
+              schema:
+                type: string
+ 
+
+  /wxtp/event/{appid}:
+    post:
+      summary: 微信第三方平台事件回调
+      tags:
+      - auth
+      parameters:
+      - in: path
+        name: appid
+        required: true
+        description: appid
+        schema:
+          type: string
+      - in: query
+        name: msg_signature
+        required: true
+        description: msg_signature
+        schema:
+          type: string
+      - in: query
+        name: timestamp
+        required: true
+        description: timestamp
+        schema:
+          type: string
+      - in: query
+        name: nonce
+        required: true
+        description: nonce
+        schema:
+          type: string
+      requestBody:
+        description: ""
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: string
+                  format: binary
+                  description: data
+      responses:
+        '200':
+          description: 返回处理结果，一般为 success
+          content:
+            application/text:
+              schema:
+                type: string
+ 
+ 
