@@ -3,14 +3,14 @@
 .travis.yml
 README.md
 api/openapi.yaml
-api_mpauth.go
+api_mini_program_auth.go
 client.go
 configuration.go
 docs/GetwxacodeunlimitReq.md
 docs/GetwxacodeunlimitReqLineColor.md
 docs/GetwxacodeunlimitRsp.md
 docs/Jscode2sessionRsp.md
-docs/MpauthApi.md
+docs/MiniProgramAuthApi.md
 docs/TokenRsp.md
 git_push.sh
 go.mod
@@ -21,5 +21,5 @@ model_getwxacodeunlimit_rsp.go
 model_jscode2session_rsp.go
 model_token_rsp.go
 response.go
-test/api_mpauth_test.go
+test/api_mini_program_auth_test.go
 utils.go

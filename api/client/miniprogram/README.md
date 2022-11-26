@@ -78,9 +78,9 @@ All URIs are relative to *https://api.weixin.qq.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*MpauthApi* | [**CgiBinTokenGet**](docs/MpauthApi.md#cgibintokenget) | **Get** /cgi-bin/token | 获取小程序全局唯一后台接口调用凭据（access_token）。
-*MpauthApi* | [**SnsJscode2sessionGet**](docs/MpauthApi.md#snsjscode2sessionget) | **Get** /sns/jscode2session | 登录凭证校验。
-*MpauthApi* | [**WxaGetwxacodeunlimitGet**](docs/MpauthApi.md#wxagetwxacodeunlimitget) | **Get** /wxa/getwxacodeunlimit | 获取小程序全局唯一后台接口调用凭据（access_token）。
+*MiniProgramAuthApi* | [**CgiBinTokenGet**](docs/MiniProgramAuthApi.md#cgibintokenget) | **Get** /cgi-bin/token | 获取小程序全局唯一后台接口调用凭据（access_token）。
+*MiniProgramAuthApi* | [**SnsJscode2sessionGet**](docs/MiniProgramAuthApi.md#snsjscode2sessionget) | **Get** /sns/jscode2session | 登录凭证校验。
+*MiniProgramAuthApi* | [**WxaGetwxacodeunlimitGet**](docs/MiniProgramAuthApi.md#wxagetwxacodeunlimitget) | **Get** /wxa/getwxacodeunlimit | 获取小程序全局唯一后台接口调用凭据（access_token）。
 
 
 ## Documentation For Models

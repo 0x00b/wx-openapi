@@ -1,12 +1,12 @@
-# \MpauthApi
+# \MiniProgramAuthApi
 
 All URIs are relative to *https://api.weixin.qq.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CgiBinTokenGet**](MpauthApi.md#CgiBinTokenGet) | **Get** /cgi-bin/token | 获取小程序全局唯一后台接口调用凭据（access_token）。
-[**SnsJscode2sessionGet**](MpauthApi.md#SnsJscode2sessionGet) | **Get** /sns/jscode2session | 登录凭证校验。
-[**WxaGetwxacodeunlimitGet**](MpauthApi.md#WxaGetwxacodeunlimitGet) | **Get** /wxa/getwxacodeunlimit | 获取小程序全局唯一后台接口调用凭据（access_token）。
+[**CgiBinTokenGet**](MiniProgramAuthApi.md#CgiBinTokenGet) | **Get** /cgi-bin/token | 获取小程序全局唯一后台接口调用凭据（access_token）。
+[**SnsJscode2sessionGet**](MiniProgramAuthApi.md#SnsJscode2sessionGet) | **Get** /sns/jscode2session | 登录凭证校验。
+[**WxaGetwxacodeunlimitGet**](MiniProgramAuthApi.md#WxaGetwxacodeunlimitGet) | **Get** /wxa/getwxacodeunlimit | 获取小程序全局唯一后台接口调用凭据（access_token）。
 
 
 
@@ -35,13 +35,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MpauthApi.CgiBinTokenGet(context.Background()).Appid(appid).Secret(secret).GrantType(grantType).Execute()
+    resp, r, err := apiClient.MiniProgramAuthApi.CgiBinTokenGet(context.Background()).Appid(appid).Secret(secret).GrantType(grantType).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MpauthApi.CgiBinTokenGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `MiniProgramAuthApi.CgiBinTokenGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CgiBinTokenGet`: TokenRsp
-    fmt.Fprintf(os.Stdout, "Response from `MpauthApi.CgiBinTokenGet`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `MiniProgramAuthApi.CgiBinTokenGet`: %v\n", resp)
 }
 ```
 
@@ -104,13 +104,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MpauthApi.SnsJscode2sessionGet(context.Background()).Appid(appid).Secret(secret).JsCode(jsCode).GrantType(grantType).Execute()
+    resp, r, err := apiClient.MiniProgramAuthApi.SnsJscode2sessionGet(context.Background()).Appid(appid).Secret(secret).JsCode(jsCode).GrantType(grantType).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MpauthApi.SnsJscode2sessionGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `MiniProgramAuthApi.SnsJscode2sessionGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `SnsJscode2sessionGet`: Jscode2sessionRsp
-    fmt.Fprintf(os.Stdout, "Response from `MpauthApi.SnsJscode2sessionGet`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `MiniProgramAuthApi.SnsJscode2sessionGet`: %v\n", resp)
 }
 ```
 
@@ -172,13 +172,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MpauthApi.WxaGetwxacodeunlimitGet(context.Background()).AccessToken(accessToken).GetwxacodeunlimitReq(getwxacodeunlimitReq).Execute()
+    resp, r, err := apiClient.MiniProgramAuthApi.WxaGetwxacodeunlimitGet(context.Background()).AccessToken(accessToken).GetwxacodeunlimitReq(getwxacodeunlimitReq).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MpauthApi.WxaGetwxacodeunlimitGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `MiniProgramAuthApi.WxaGetwxacodeunlimitGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `WxaGetwxacodeunlimitGet`: *os.File
-    fmt.Fprintf(os.Stdout, "Response from `MpauthApi.WxaGetwxacodeunlimitGet`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `MiniProgramAuthApi.WxaGetwxacodeunlimitGet`: %v\n", resp)
 }
 ```
 

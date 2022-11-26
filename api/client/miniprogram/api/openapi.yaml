@@ -49,7 +49,7 @@ paths:
           description: ""
       summary: 登录凭证校验。
       tags:
-      - mpauth
+      - MiniProgramAuth
   /cgi-bin/token:
     get:
       parameters:
@@ -86,7 +86,7 @@ paths:
           description: ""
       summary: 获取小程序全局唯一后台接口调用凭据（access_token）。
       tags:
-      - mpauth
+      - MiniProgramAuth
   /wxa/getwxacodeunlimit:
     get:
       parameters:
@@ -114,7 +114,7 @@ paths:
           description: 二维码二进制 or getwxacodeunlimitRsp
       summary: 获取小程序全局唯一后台接口调用凭据（access_token）。
       tags:
-      - mpauth
+      - MiniProgramAuth
 components:
   schemas:
     TokenRsp:

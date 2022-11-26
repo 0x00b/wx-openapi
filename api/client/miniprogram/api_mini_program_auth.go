@@ -19,12 +19,12 @@ import (
 	"os"
 )
 
-// MpauthApiService MpauthApi service
-type MpauthApiService service
+// MiniProgramAuthApiService MiniProgramAuthApi service
+type MiniProgramAuthApiService service
 
 type ApiCgiBinTokenGetRequest struct {
 	ctx        context.Context
-	ApiService *MpauthApiService
+	ApiService *MiniProgramAuthApiService
 	appid      *string
 	secret     *string
 	grantType  *string
@@ -58,7 +58,7 @@ CgiBinTokenGet 获取小程序全局唯一后台接口调用凭据（access_toke
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCgiBinTokenGetRequest
 */
-func (a *MpauthApiService) CgiBinTokenGet(ctx context.Context) ApiCgiBinTokenGetRequest {
+func (a *MiniProgramAuthApiService) CgiBinTokenGet(ctx context.Context) ApiCgiBinTokenGetRequest {
 	return ApiCgiBinTokenGetRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -68,7 +68,7 @@ func (a *MpauthApiService) CgiBinTokenGet(ctx context.Context) ApiCgiBinTokenGet
 // Execute executes the request
 //
 //	@return TokenRsp
-func (a *MpauthApiService) CgiBinTokenGetExecute(r ApiCgiBinTokenGetRequest) (*TokenRsp, *http.Response, error) {
+func (a *MiniProgramAuthApiService) CgiBinTokenGetExecute(r ApiCgiBinTokenGetRequest) (*TokenRsp, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -76,7 +76,7 @@ func (a *MpauthApiService) CgiBinTokenGetExecute(r ApiCgiBinTokenGetRequest) (*T
 		localVarReturnValue *TokenRsp
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MpauthApiService.CgiBinTokenGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MiniProgramAuthApiService.CgiBinTokenGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -155,7 +155,7 @@ func (a *MpauthApiService) CgiBinTokenGetExecute(r ApiCgiBinTokenGetRequest) (*T
 
 type ApiSnsJscode2sessionGetRequest struct {
 	ctx        context.Context
-	ApiService *MpauthApiService
+	ApiService *MiniProgramAuthApiService
 	appid      *string
 	secret     *string
 	jsCode     *string
@@ -196,7 +196,7 @@ SnsJscode2sessionGet 登录凭证校验。
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiSnsJscode2sessionGetRequest
 */
-func (a *MpauthApiService) SnsJscode2sessionGet(ctx context.Context) ApiSnsJscode2sessionGetRequest {
+func (a *MiniProgramAuthApiService) SnsJscode2sessionGet(ctx context.Context) ApiSnsJscode2sessionGetRequest {
 	return ApiSnsJscode2sessionGetRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -206,7 +206,7 @@ func (a *MpauthApiService) SnsJscode2sessionGet(ctx context.Context) ApiSnsJscod
 // Execute executes the request
 //
 //	@return Jscode2sessionRsp
-func (a *MpauthApiService) SnsJscode2sessionGetExecute(r ApiSnsJscode2sessionGetRequest) (*Jscode2sessionRsp, *http.Response, error) {
+func (a *MiniProgramAuthApiService) SnsJscode2sessionGetExecute(r ApiSnsJscode2sessionGetRequest) (*Jscode2sessionRsp, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -214,7 +214,7 @@ func (a *MpauthApiService) SnsJscode2sessionGetExecute(r ApiSnsJscode2sessionGet
 		localVarReturnValue *Jscode2sessionRsp
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MpauthApiService.SnsJscode2sessionGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MiniProgramAuthApiService.SnsJscode2sessionGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -297,7 +297,7 @@ func (a *MpauthApiService) SnsJscode2sessionGetExecute(r ApiSnsJscode2sessionGet
 
 type ApiWxaGetwxacodeunlimitGetRequest struct {
 	ctx                  context.Context
-	ApiService           *MpauthApiService
+	ApiService           *MiniProgramAuthApiService
 	accessToken          *string
 	getwxacodeunlimitReq *GetwxacodeunlimitReq
 }
@@ -323,7 +323,7 @@ WxaGetwxacodeunlimitGet 获取小程序全局唯一后台接口调用凭据（ac
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiWxaGetwxacodeunlimitGetRequest
 */
-func (a *MpauthApiService) WxaGetwxacodeunlimitGet(ctx context.Context) ApiWxaGetwxacodeunlimitGetRequest {
+func (a *MiniProgramAuthApiService) WxaGetwxacodeunlimitGet(ctx context.Context) ApiWxaGetwxacodeunlimitGetRequest {
 	return ApiWxaGetwxacodeunlimitGetRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -333,7 +333,7 @@ func (a *MpauthApiService) WxaGetwxacodeunlimitGet(ctx context.Context) ApiWxaGe
 // Execute executes the request
 //
 //	@return *os.File
-func (a *MpauthApiService) WxaGetwxacodeunlimitGetExecute(r ApiWxaGetwxacodeunlimitGetRequest) (**os.File, *http.Response, error) {
+func (a *MiniProgramAuthApiService) WxaGetwxacodeunlimitGetExecute(r ApiWxaGetwxacodeunlimitGetRequest) (**os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -341,7 +341,7 @@ func (a *MpauthApiService) WxaGetwxacodeunlimitGetExecute(r ApiWxaGetwxacodeunli
 		localVarReturnValue **os.File
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MpauthApiService.WxaGetwxacodeunlimitGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MiniProgramAuthApiService.WxaGetwxacodeunlimitGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

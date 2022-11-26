@@ -10,7 +10,7 @@ paths:
     get:
       summary: 登录凭证校验。
       tags:
-      - mpauth
+      - MiniProgramAuth
       parameters:
       - in: query
         name: appid
@@ -47,7 +47,7 @@ paths:
     get:
       summary: 获取小程序全局唯一后台接口调用凭据（access_token）。
       tags:
-      - mpauth
+      - MiniProgramAuth
       parameters:
       - in: query
         name: appid
@@ -80,7 +80,7 @@ paths:
     get:
       summary: 获取小程序全局唯一后台接口调用凭据（access_token）。
       tags:
-      - mpauth
+      - MiniProgramAuth
       parameters:
       - in: query
         name: access_token

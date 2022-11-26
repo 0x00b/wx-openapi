@@ -51,7 +51,7 @@ type APIClient struct {
 
 	// API Services
 
-	MpauthApi *MpauthApiService
+	MiniProgramAuthApi *MiniProgramAuthApiService
 }
 
 type service struct {
@@ -70,7 +70,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.MpauthApi = (*MpauthApiService)(&c.common)
+	c.MiniProgramAuthApi = (*MiniProgramAuthApiService)(&c.common)
 
 	return c
 }
